@@ -60,7 +60,7 @@ namespace DatingApp.API
             {
                 app.UseDeveloperExceptionPage();
             }
-             else 
+            else 
             {
                 app.UseExceptionHandler(builder => 
                 {
@@ -76,6 +76,7 @@ namespace DatingApp.API
                         }
                     });
                 });
+            }
 
             //app.UseHttpsRedirection();
 
