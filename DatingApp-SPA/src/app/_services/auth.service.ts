@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
 baseUrl = environment.apiUrl + 'auth/';
 jwtHelper = new JwtHelperService();
-decoderToken: any;
+decodedToken: any;
 constructor(private http: HttpClient) { }
     login(model: any){
       return this.http.post(this.baseUrl + 'login', model).pipe(
@@ -19,8 +19,9 @@ constructor(private http: HttpClient) { }
           const user = response;
           if (user){
             localStorage.setItem('token', user.token);
-            this.decoderToken = this.jwtHelper.decodeToken(user.token);
-            console.log(this.decoderToken);
+            localStorage.setItem('user', JSON.stringify(user.user));
+            this.decodedToken = this.jwtHelper.decodeToken(user.token);
+            console.log(this.decodedToken);
           }
         })
       );
